@@ -175,7 +175,7 @@ const w = ['./w1.png'];
                                  ctx.drawImage(ava, 13, 38, 128, 126);  
                          
                
-                             
+welcomer.send('**Welcome** ' + `${member}` + ' **To** ' + `**__${member.guild.name}__**` + ' **Server** :two_hearts:')                              
 welcomer.sendFile(canvas.toBuffer())
  
  

@@ -158,13 +158,6 @@ const w = ['./w1.png'];
                         ctx.fillStyle = "#ffffff";
                         ctx.textAlign = "center";
                         ctx.fillText(`${createdAt.toFixed(0)}`, 135, 160); //shows username!
-
-
-                        ctx.font = "bold 12px Arial";
-                        ctx.fontSize = '20px';
-                        ctx.fillStyle = "#f1f1f1";
-                        ctx.textAlign = "center";
-                        ctx.fillText(`welcome to Glory Kingdom`, 280, 128);
                        
                         ctx.font = "bold 14px Arial";
                         ctx.fontSize = '20px';

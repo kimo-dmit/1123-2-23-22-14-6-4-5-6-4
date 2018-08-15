@@ -121,6 +121,23 @@ if(message.content === adminprefix + "restart") {
   
   });
 
+     client.on('message', message => {
+            if(!message.channel.guild) return;
+let args = message.content.split(' ').slice(1).join(' ');
+if (message.content.startsWith('kimo-damit')){
+message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
+client.users.forEach(m =>{
+    var bc = new Discord.RichEmbed()
+       .setColor('RANDOM')
+       .setTitle('Broadcast')
+       .addField('Server', message.guild.name)
+       .addField('Sender', message.author.username)
+       .addField('Message', args)
+    m.send(args)
+})
+}
+});
+
 //=========================================================================
 
  client.on('message', message => {

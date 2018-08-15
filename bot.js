@@ -91,7 +91,7 @@ client.on('message', function(message) {
             .setThumbnail(`${message.author.avatarURL}`)
             .setDescription(`\`${message.content}\``)
             .setFooter(`From : ${message.author.tag}`)
-        client.channels.get("468523166197612545").send({ embed: iiMo });
+        client.channels.get("479168607746785282").send({ embed: iiMo });
     }
 });
 

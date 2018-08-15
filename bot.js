@@ -121,6 +121,82 @@ if(message.content === adminprefix + "restart") {
   
   });
 
+client.on('guildMemberAdd', member => {
+	var Canvas = require('canvas') //npm i canvas
+var jimp = require('jimp') //npm i jimp
+     const welcomer =  member.guild.channels.find('name', 'welcome');
+     if(!welcomer) return;
+const w = ['./w1.png'];
+ 
+         let Image = Canvas.Image,
+            canvas = new Canvas(400, 200),
+            ctx = canvas.getContext('2d');
+        fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 400, 200);
+             
+           const millis = new Date().getTime() - member.user.createdAt.getTime();
+    const now = new Date();
+    const createdAt = millis / 1000 / 60 / 60 / 24;
+
+ 
+                let url = member.user.displayAvatarURL.endsWith(".webp") ? member.user.displayAvatarURL.slice(100) + ".png" : member.user.displayAvatarURL;
+                jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+                       
+                       
+                       
+                       
+                       
+                                               ctx.font = '15px Arial';
+                        ctx.fontSize = '20px';
+                        ctx.fillStyle = "#ffffff";
+                        ctx.textAlign = "center";
+                        ctx.fillText(`${createdAt.toFixed(0)}`, 135, 160); //shows username!
+
+
+                        ctx.font = "bold 12px Arial";
+                        ctx.fontSize = '20px';
+                        ctx.fillStyle = "#f1f1f1";
+                        ctx.textAlign = "center";
+                        ctx.fillText(`welcome to Glory Kingdom`, 280, 128);
+                       
+                        ctx.font = "bold 14px Arial";
+                        ctx.fontSize = '20px';
+                        ctx.fillStyle = "#f1f1f1";
+                        ctx.textAlign = "center";
+                        ctx.fillText(member.user.username, 240, 150);
+ 
+                let Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(77, 101, 62, 0, Math.PI*2);
+                              ctx.stroke();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 13, 38, 128, 126);  
+                         
+               
+                             
+welcomer.sendFile(canvas.toBuffer())
+ 
+ 
+ 
+     
+     
+                    
+     
+                   
+})
+})
+});                    
+});
+
 //=========================================================================
 
  client.on('message', message => {

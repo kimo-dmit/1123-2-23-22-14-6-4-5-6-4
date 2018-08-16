@@ -46,7 +46,7 @@ client.on('ready', () => {
   console.log(`Users : ${client.users.size} `);
   console.log(`Channels : ${client.channels.size}`);
   
-   client.user.setActivity('.help | .inv',{type: 'WATCHING'})
+   client.user.setActivity('Soon',{type: 'WATCHING'})
 });
 
 const developers = ['290908670529896448', '323231064157847559'];

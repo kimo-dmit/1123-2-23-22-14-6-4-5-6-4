@@ -277,7 +277,7 @@ welcomer.sendFile(canvas.toBuffer())
  client.on('message', message => {
      const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-    if (command==="help") {
+    if (message.content.toLowerCase() === prefix + "help") {
         if(!message.channel.guild) return;
     let embed = new Discord.RichEmbed()
   .setColor('#36393e')
@@ -299,7 +299,8 @@ avatar    |  صوره حسابك
 image     |  صوره السيرفر
 myinv     |  روابط الانفايت حقتك وكم شخص دخلت
 stats     |  معلومات عن البوت
-     Admin Commands : 
+    
+   Admin Commands : 
      
 createcolors  [number] |  انشاء الوان
 clear   [number]   |  تنظيف الشات
@@ -322,7 +323,7 @@ umc        |  فتح الشات
      
 `)
 message.author.sendEmbed(e)
-  message.author.sendEmbed(e).catch(error => message.reply('Your DM is CLosed')).then(message => message.delete(10000));
+  message.author.sendEmbed(e).catch(error => message.reply('Your DM is CLosed'))
   message.channel.send('<@' + message.author.id + '>').then(message => message.delete(5000));
   message.channel.sendEmbed(embed).then(message => message.delete(5000));
   }

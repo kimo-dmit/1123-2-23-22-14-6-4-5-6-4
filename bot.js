@@ -322,7 +322,7 @@ umc        |  فتح الشات
      
      
 `)
-message.author.sendEmbed(e)
+
   message.author.sendEmbed(e).catch(error => message.reply('Your DM is CLosed'))
   message.channel.send('<@' + message.author.id + '>').then(message => message.delete(5000));
   message.channel.sendEmbed(embed).then(message => message.delete(5000));

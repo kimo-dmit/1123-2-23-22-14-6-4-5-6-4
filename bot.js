@@ -49,6 +49,34 @@ client.on('ready', () => {
    client.user.setActivity('Soon',{type: 'WATCHING'})
 });
 
+client.on('guildMemberAdd', member => {
+    var c1 = '480618446636449792';
+    if(!c1) return;
+    var c2 = '480618467133751316';
+    if(!c2) return;
+    var c3 = '480618484313882624';
+    if(!c3) return;
+    member.guild.channels.get(c1).setName(`Total Users: ${member.guild.memberCount}`);
+    let humans = member.guild.memberCount - member.guild.members.filter(m => m.user.bot).size
+    member.guild.channels.get(c2).setName(`Total Humans: ${humans}`);
+    let bots = member.guild.members.filter(m => m.user.bot).size
+    member.guild.channels.get(c3).setName(`Total Bots: ${bots}`);
+});
+client.on('guildMemberRemove', member => {
+    var c1 = '480618446636449792';
+    if(!c1) return;
+    var c2 = '480618467133751316';
+    if(!c2) return;
+    var c3 = '480618484313882624';
+    if(!c3) return;
+    member.guild.channels.get(c1).setName(`Total Users: ${member.guild.memberCount}`);
+    let humans = member.guild.memberCount - member.guild.members.filter(m => m.user.bot).size
+    member.guild.channels.get(c2).setName(`Total Humans: ${humans}`);
+    let bots = member.guild.members.filter(m => m.user.bot).size
+    member.guild.channels.get(c3).setName(`Total Bots: ${bots}`);
+});
+
+
 const developers = ['290908670529896448', '323231064157847559'];
 const admin = "o";
 client.on('message', message => {

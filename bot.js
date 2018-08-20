@@ -1299,35 +1299,46 @@ const command = args.shift().toLowerCase();
 });
 
 
+
 client.on('message' , message => {
+    var prefix = '.';
      const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
-if(command === "userinfo") {
+if(message.content.toLowerCase() === prefix + "id") {
+     const millis = new Date().getTime() - message.guild.createdAt.getTime();
+    const now = new Date();
+    const createdAt = millis / 1000 / 60 / 60 / 24;
     if(!message.channel.guild) return message.reply(' Error : \` Guild Command \`');
     let user = message.mentions.users.first() || message.author;
-    const joineddiscord = (user.createdAt.getDate() + 1) + '-' + (user.createdAt.getMonth() + 1) + '-' + user.createdAt.getFullYear() + ' | ' + user.createdAt.getHours() + ':' + user.createdAt.getMinutes() + ':' + user.createdAt.getSeconds();
+    const joineddiscord = (user.createdAt.getDate() + 1) + '-' + (user.createdAt.getMonth() + 1) + '-' + user.createdAt.getFullYear(); +"-" +`${createdAt.toFixed(0)}`
     message.delete();
+       var mentionned = message.mentions.members.first();
+     var h;
+             if(mentionned) {
+                 h = mentionned
+             } else {
+                 h = message.member
+             }
     let game;
     if (user.presence.game === null) {
-        game = 'لا يلعب حاليا.';
+        game = 'None.';
     } else {
         game = user.presence.game.name;
     }
     let messag;
     if (user.lastMessage === null) {
-        messag = 'لم يرسل رسالة. ';
+        messag = 'None.';
     } else {
         messag = user.lastMessage;
     }
     let status;
     if (user.presence.status === 'online') {
-        status = ':green_heart:';
+        status = 'Online';
     } else if (user.presence.status === 'dnd') {
-        status = ':heart:';
+        status = 'DND';
     } else if (user.presence.status === 'idle') {
-        status = ':yellow_heart:';
+        status = 'Idle';
     } else if (user.presence.status === 'offline') {
-        status = ':black_heart:';
+        status = 'Offline';
     }
     if (user.presence.status === 'offline') {
         stat = 0x000000;
@@ -1338,17 +1349,19 @@ if(command === "userinfo") {
     } else if (user.presence.status === 'idle') {
         stat = 0xF7C035;
     }
+    moment.locale('ar-ly');
     const embed = new Discord.RichEmbed()
-  .addField('**UserInfo:**', `**name:** ${user.username}#${user.discriminator}\n**JoinedDiscord:** ${joineddiscord}\n**LastMessage:** ${messag}\n**Playing:** ${game}\n**Status:** ${status}\n**Bot?** ${user.bot}`, true)
-  .setThumbnail(user.displayAvatarURL)
-  .addField(`Roles:`, message.guild.members.get(user.id).roles.array(role => role.name).slice(1).join(', '))
-  .addField('DiscordInfo:', `**Discriminator:** #${user.discriminator}\n**ID:** ${user.id}\n**Username:** ${user.username}`)
+  
+  .addField('Discord Info : ', `Name : ${user.username}\n Discriminator: #${user.discriminator}\nID : ${user.id} \nJoinedDiscord : ${joineddiscord}\nBot :  ${user.bot}\nPlaying : ${game}\nStatus : ${status}`,true)
+  .addField('Server Info :', `LastMessage : ${messag}\nJoined : ${moment(h.joinedAt).fromNow()}\nRoles : `+message.guild.members.get(user.id).roles.array(role => role.name).slice(1).join(', '))
   .setAuthor(`${user.username}`, user.displayAvatarURL)
   .setColor('#36393e')
+    .setThumbnail(user.displayAvatarURL)
     message.channel.send({embed})
   .catch(e => logger.error(e));
 }
  });
+
 
 client.on('message', message => {
     if (message.content.startsWith( prefix + "avatar")) {

@@ -27,7 +27,7 @@ client.on('message', message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     if(!message.channel.guild) return;
-if (command === 'ping') {
+if(message.content.toLowerCase() === prefix + "ping") {
 if(!message.channel.guild) return;
 var msg = `${Date.now() - message.createdTimestamp}`
 var api = `${Math.round(client.ping)}`
@@ -41,7 +41,7 @@ message.channel.send({embed:embed}).then(message => message.delete(5000));
 });
 
 client.on('message', message => {
-     if (message.content === prefix + "bot") {
+if(message.content.toLowerCase() === prefix + "bot") {
 
 message.channel.send(`
 
@@ -63,7 +63,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
   var prefix = "."
-        if (message.content.startsWith(prefix + "uptime")) {
+ if(message.content.toLowerCase() === prefix + "uptime") {
     let ms = client.uptime;
     let cd = 24 * 60 * 60 * 1000; 
     let ch = 60 * 60 * 1000; 

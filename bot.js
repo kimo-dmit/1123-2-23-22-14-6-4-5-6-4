@@ -719,8 +719,7 @@ client.on('message', message => {
     });
 
 client.on('message', message => {
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
+ let args = message.content.split(' ').slice(1).join(' ');
 if(message.content.toLowerCase() === prefix + "bans") {
         message.delete(5000)
          if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.reply("Error : \` I Dont Have ADMINISTRATOR Permission\`").then(message => message.delete(5000));
@@ -735,8 +734,7 @@ if(message.content.toLowerCase() === prefix + "bans") {
 
 
 client.on('message', async message => {
-      const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
+let args = message.content.split(' ').slice(1).join(' ');
 
 if(message.content.toLowerCase() === prefix + "tempban") {
   if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply('You Need  \` BAN_MEMBERS\` Permission  ').then(message => message.delete(4000))
@@ -804,9 +802,7 @@ if(message.content.toLowerCase() === prefix + "tempban") {
   if (message.author.codes) return;
   if (!message.content.startsWith(prefix)) return;
 
-const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
-
+let args = message.content.split(' ').slice(1).join(' ');
   
 
 if(message.content.toLowerCase() === prefix + "ban") {
@@ -835,8 +831,7 @@ client.on('message', message => {
     if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
 
-const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
+let args = message.content.split(' ').slice(1).join(' ');
 
 if(message.content.toLowerCase() === prefix + "kick") {
                if(!message.channel.guild) return;
@@ -871,9 +866,8 @@ if(message.content.toLowerCase() === prefix + "kick") {
  if(!message.channel.guild) return;  
   if (message.author.bot) return;
  
- const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
- 
+let args = message.content.split(' ').slice(1).join(' ');
+	 
 if(message.content.toLowerCase() === prefix + "unmute") {
         if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply(' Error : You Need `` MANAGE_ROLES ``Permission ').catch(console.error).then(message => message.delete(4000))
   let user = message.mentions.users.first();
@@ -898,8 +892,7 @@ if(message.content.toLowerCase() === prefix + "unmute") {
 });
 
 client.on('message',function(message) {
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
+let args = message.content.split(' ').slice(1).join(' ');
  if(!message.channel.guild) return;    let messageArray = message.content.split(' ');
     let muteRole =  message.guild.roles.find('name', 'Muted');
     let muteMember = message.mentions.members.first();
@@ -968,8 +961,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You N
 
 
 client.on('message', message => {
-   const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
+let args = message.content.split(' ').slice(1)
 if(message.content.toLowerCase() === prefix + "role") {
         let member = message.mentions.users.first();
         let role = args.join(' ').replace(member, '').replace(args[0], '').replace(' ', '');
@@ -1087,8 +1079,7 @@ const ee =new Discord.RichEmbed()
 
 
 client.on('message', message => {
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
+let args = message.content.split(' ').slice(1).join(' ');
   if (message.author.bot) return;
   if(!message.channel.guild) return;
   if (!message.content.startsWith(prefix)) return;

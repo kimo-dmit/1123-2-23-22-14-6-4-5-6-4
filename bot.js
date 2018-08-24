@@ -10,7 +10,7 @@ const snekfetch = require('snekfetch');
 const Canvas = require("canvas");
 const child_process = require("child_process");
 const ytdl = require('ytdl-core');
- const getYoutubeID = require('get-youtube-id');
+const getYoutubeID = require('get-youtube-id');
 const fetchVideoInfo = require('youtube-info');
 const yt_api_key = "AIzaSyDeoIH0u1e72AtfpwSKKOSy3IPp2UHzqi4";
 const jimp = require('jimp')
@@ -1077,32 +1077,31 @@ const ee =new Discord.RichEmbed()
 }
 });
 
-
-client.on('message', message => {
-let args = message.content.split(' ').slice(1).join(' ');
-  if (message.author.bot) return;
-  if(!message.channel.guild) return;
-  if (!message.content.startsWith(prefix)) return;
-
- 
-
-if(message.content.toLowerCase() === prefix + "clear") {
-  if (isNaN(args[0])) return message.channel.send('**Please supply a valid amount of messages to purge**').then(message => message.delete(5000))
-        const emoji = client.emojis.find("name", "wastebasket")
-    let textxt = args.slice(0).join("");
-    if(message.member.hasPermission("MANAGE_MESSAGES")) {
-    if (textxt == "") {
-        message.delete().then
-    message.channel.send("Error : `` Type a Value To Delete ``").then(m => m.delete(3000));
-} else {
-    message.delete().then
-    message.delete().then
-    message.channel.bulkDelete(textxt);
-        message.reply("Cleared : ``" + textxt + "``").then(m => m.delete(3000))
-        }    
-    }
+ client.on('message', message => {
+     var prefix = '.';
+  if (message.content.startsWith(prefix +'clear')) {
+        const word = message.content;
+        const number = word.slice(7, word.length);
+        const int = Number(number);
+         if(!message.member.hasPermission("MANAGE_MESSAGES")){
+            return message.channel.send("i need to be given Manage Messages permissions to use this command ");
 }
-});
+         if(int >= 101){
+            return message.channel.send("The max number of messages you can delete is 100");
+}
+         if(!message.member.hasPermission("MANAGE_MESSAGES")){
+            return message.channel.send("Looks like you dont have the permissions to do that");
+}
+         if(int == ""){
+            return message.channel.send("supply A Number to Delete");
+        }else if (isNaN(int)){
+            return message.reply('Must be a number')
+        }
+        message.channel.bulkDelete(int).then(() => {
+            return message.channel.send(`Cleared ${int} messages.`)
+    });
+    }
+})
 
 
 client.on('message', ra3d => {

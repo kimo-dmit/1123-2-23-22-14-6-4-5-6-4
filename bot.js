@@ -898,7 +898,7 @@ let args = message.content.split(' ').slice(1).join(' ');
     let muteMember = message.mentions.members.first();
     let muteReason = messageArray[2];
     let muteDuration = messageArray[3];
-if(message.content.toLowerCase() === prefix + "mute") {
+if(message.content === prefix + "mute") {
             
   if (message.author.bot) return;
        if(!muteRole) return message.guild.createRole({name: 'Muted'}).then(message.guild.channels.forEach(chan => chan.overwritePermissions(muteRole, {SEND_MESSAGES:false,ADD_REACTIONS:false})));

@@ -18,6 +18,34 @@ const prefix = ".";
 
 
 
+
+client.on('guildMemberAdd', member => {
+    let c1 = '480618446636449792';
+    if(!c1) return;
+    let c2 = '480618467133751316';
+    if(!c2) return;
+    let c3 = '480618484313882624';
+    if(!c3) return;
+    member.guild.channels.get(c1).setName(`Total Users: ${member.guild.memberCount}`);
+    let humans = member.guild.memberCount - member.guild.members.filter(m => m.user.bot).size
+    member.guild.channels.get(c2).setName(`Total Humans: ${humans}`);
+    let bots = member.guild.members.filter(m => m.user.bot).size
+    member.guild.channels.get(c3).setName(`Total Bots: ${bots}`);
+});
+client.on('guildMemberRemove', member => {
+     let c1 = '480618446636449792';
+    if(!c1) return;
+    let c2 = '480618467133751316';
+    if(!c2) return;
+    let c3 = '480618484313882624';
+    if(!c3) return;
+    member.guild.channels.get(c1).setName(`Total Users: ${member.guild.memberCount}`);
+    let humans = member.guild.memberCount - member.guild.members.filter(m => m.user.bot).size
+    member.guild.channels.get(c2).setName(`Total Humans: ${humans}`);
+    let bots = member.guild.members.filter(m => m.user.bot).size
+    member.guild.channels.get(c3).setName(`Total Bots: ${bots}`);
+});
+
 //const args = message.content.slice(prefix.length).trim().split(/ +/g);
 //const command = args.shift().toLowerCase();
 
